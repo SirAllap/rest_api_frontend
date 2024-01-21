@@ -1,14 +1,14 @@
-import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.tsx'
 import './index.css'
-import { Header } from './components/header/Header.tsx'
-import Footer from './components/footer/Footer.tsx'
+import { Provider } from 'react-redux'
+import { store } from './app/store.ts'
+import { BrowserRouter } from 'react-router-dom'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-	<React.StrictMode>
-		<Header />
-		<App />
-		<Footer />
-	</React.StrictMode>
+	<Provider store={store}>
+		<BrowserRouter>
+			<App />
+		</BrowserRouter>
+	</Provider>
 )
