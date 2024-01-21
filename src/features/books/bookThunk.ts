@@ -41,3 +41,21 @@ export const addNewBook = createAsyncThunk(
 		}
 	}
 )
+
+export const deleteOneBook = createAsyncThunk(
+	'books/deleteOneBook',
+	async (id: string) => {
+		const response = await fetch(`${API_URL}/books/${id}`, {
+			method: 'DELETE',
+			mode: 'cors',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+		})
+		if (!response.ok) {
+			throw new Error(`Response status: ${response.status}`)
+		} else {
+			return id
+		}
+	}
+)
