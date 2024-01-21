@@ -1,4 +1,5 @@
 import {
+	Alert,
 	Button,
 	Card,
 	CardActions,
@@ -9,19 +10,30 @@ import {
 import './book.css'
 import { useEffect, useState } from 'react'
 import { useAppDispatch, useAppSelector } from '../../app/hooks'
-import { fetchAllBooks } from '../../features/books/bookThunk'
+import { deleteOneBook, fetchAllBooks } from '../../features/books/bookThunk'
 import { fetchBooks } from '../../features/books/bookSlice'
 import { fetchStatus } from '../../features/books/bookSlice'
+import { fetchDeletitionStatus } from '../../features/books/bookSlice'
 import { IBook } from '../../features/interfaces'
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
 import EditIcon from '@mui/icons-material/Edit'
+import CheckIcon from '@mui/icons-material/Check'
+import zIndex from '@mui/material/styles/zIndex'
 
 const Book = () => {
 	const dispatch = useAppDispatch()
 	const statusFetch = useAppSelector(fetchStatus)
+	const deletitionStatusFetch = useAppSelector(fetchDeletitionStatus)
 	const booksFetch = useAppSelector(fetchBooks)
 	const [books, setBooks] = useState<IBook[]>([])
 	const [loading, setLoading] = useState(false)
+	const [deleteAlert, setDeleteAlert] = useState(false)
+
+	if (deleteAlert) {
+		setTimeout(() => {
+			setDeleteAlert(false)
+		}, 4500)
+	}
 
 	useEffect(() => {
 		dispatch(fetchAllBooks())
@@ -36,7 +48,18 @@ const Book = () => {
 		} else if (statusFetch === 'rejected') {
 			setLoading(false)
 		}
-	}, [statusFetch, booksFetch])
+		if (deletitionStatusFetch === 'pending') {
+			console.log('pending')
+		} else if (deletitionStatusFetch === 'fulfilled') {
+			setDeleteAlert(true)
+		} else if (deletitionStatusFetch === 'rejected') {
+			console.log('rejected')
+		}
+	}, [statusFetch, booksFetch, deletitionStatusFetch])
+
+	const handleDeletition = (id: string) => {
+		dispatch(deleteOneBook(id))
+	}
 
 	return (
 		<div className='card-container'>
@@ -139,14 +162,36 @@ const Book = () => {
 							color='warning'
 							size='small'
 							endIcon={<DeleteForeverIcon />}
+							onClick={() => {
+								book._id && handleDeletition(book._id)
+							}}
 						>
 							Delete
 						</Button>
 					</CardActions>
 				</Card>
 			))}
+			{deleteAlert && (
+				<Alert
+					icon={<CheckIcon fontSize='inherit' />}
+					severity='warning'
+					variant='filled'
+					sx={alert_style}
+				>
+					Book successfully deleted.
+				</Alert>
+			)}
 		</div>
 	)
 }
 
 export default Book
+
+const alert_style = {
+	position: 'fixed',
+	top: '10%',
+	right: '5%',
+	width: 300,
+	zIndex: zIndex.modal,
+	fontSize: '20px',
+}
