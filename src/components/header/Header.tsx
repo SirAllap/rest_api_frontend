@@ -222,7 +222,7 @@ const modal_style = {
 }
 
 const alert_style = {
-	position: 'absolute',
+	position: 'fixed',
 	top: '10%',
 	right: '5%',
 	width: 300,
