@@ -18,6 +18,7 @@ import { IBook } from '../../features/interfaces'
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
 import EditIcon from '@mui/icons-material/Edit'
 import CheckIcon from '@mui/icons-material/Check'
+import FullscreenIcon from '@mui/icons-material/Fullscreen'
 import zIndex from '@mui/material/styles/zIndex'
 
 const Book = () => {
@@ -112,13 +113,17 @@ const Book = () => {
 							fontFamily={'monospace'}
 							color={'#555555'}
 							variant='overline'
-							sx={{ mt: 1, mb: 2 }}
+							textAlign={'justify'}
+							fontWeight={700}
+							sx={{
+								mb: 2,
+							}}
 						>
 							- Writed by:
 							<Typography
 								fontFamily={'monospace'}
-								fontWeight={700}
-								textAlign={'justify'}
+								textTransform={'none'}
+								fontSize={14}
 							>
 								{book.author}
 							</Typography>
@@ -128,45 +133,50 @@ const Book = () => {
 							color={'#555555'}
 							textAlign={'justify'}
 							variant='overline'
+							fontWeight={700}
 							sx={{ mb: 2 }}
 						>
 							- Description:
 							<Typography
 								className='book-description'
-								fontWeight={700}
 								fontFamily={'monospace'}
+								textTransform={'none'}
+								fontSize={14}
 							>
 								{book.description}
 							</Typography>
 						</Typography>
 						<Typography
 							color={'#555555'}
-							sx={{ mb: 1.5 }}
-							align='center'
+							sx={{ mt: 2, mb: 6 }}
 							fontWeight={700}
-							fontSize={17}
+							fontSize={15}
 							fontFamily={'monospace'}
 						>
 							{book.price} €
 						</Typography>
 					</CardContent>
 					<CardActions className='buttons-container'>
-						<Button
-							color='success'
-							size='small'
-							endIcon={<EditIcon />}
-						>
-							Edit
+						<Button color='success' variant='outlined'>
+							<EditIcon />
 						</Button>
 						<Button
 							color='warning'
-							size='small'
-							endIcon={<DeleteForeverIcon />}
+							variant='outlined'
 							onClick={() => {
 								book._id && handleDeletition(book._id)
 							}}
 						>
-							Delete
+							<DeleteForeverIcon />
+						</Button>
+						<Button
+							color='success'
+							variant='outlined'
+							onClick={() => {
+								book._id && handleOpenBook(book._id)
+							}}
+						>
+							<FullscreenIcon />
 						</Button>
 					</CardActions>
 				</Card>

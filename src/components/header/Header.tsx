@@ -138,7 +138,6 @@ export const Header = () => {
 						className='create-button'
 						sx={{ mt: 5 }}
 						onClick={() => {
-							console.log(title, author, description, price)
 							handleBookCreation()
 						}}
 						disabled={
