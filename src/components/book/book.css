@@ -12,8 +12,8 @@
 	position: relative;
 	min-width: 255px;
 	max-width: 255px;
-	min-height: 325px;
-	max-height: 325px;
+	min-height: 355px;
+	max-height: 355px;
 }
 
 .buttons-container {
@@ -23,4 +23,12 @@
 	position: absolute;
 	bottom: 0px;
 	width: 93%;
+}
+
+.book-description {
+	display: -webkit-box;
+	-webkit-line-clamp: 3;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
