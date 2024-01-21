@@ -13,6 +13,8 @@ import { fetchAllBooks } from '../../features/books/bookThunk'
 import { fetchBooks } from '../../features/books/bookSlice'
 import { fetchStatus } from '../../features/books/bookSlice'
 import { IBook } from '../../features/interfaces'
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
+import EditIcon from '@mui/icons-material/Edit'
 
 const Book = () => {
 	const dispatch = useAppDispatch()
@@ -52,15 +54,13 @@ const Book = () => {
 			{loading && (
 				<>
 					{[...Array(6)].map((_, index) => (
-						<>
-							<Skeleton
-								key={index}
-								animation='wave'
-								variant='rectangular'
-								width={255}
-								height={355}
-							/>
-						</>
+						<Skeleton
+							key={index}
+							animation='wave'
+							variant='rectangular'
+							width={255}
+							height={355}
+						/>
 					))}
 				</>
 			)}
@@ -88,7 +88,8 @@ const Book = () => {
 						<Typography
 							fontFamily={'monospace'}
 							color={'#555555'}
-							sx={{ mb: 1.5 }}
+							variant='overline'
+							sx={{ mt: 1, mb: 2 }}
 						>
 							- Writed by:
 							<Typography
@@ -102,8 +103,9 @@ const Book = () => {
 						<Typography
 							fontFamily={'monospace'}
 							color={'#555555'}
-							sx={{ mb: 1.5 }}
 							textAlign={'justify'}
+							variant='overline'
+							sx={{ mb: 2 }}
 						>
 							- Description:
 							<Typography
@@ -126,8 +128,20 @@ const Book = () => {
 						</Typography>
 					</CardContent>
 					<CardActions className='buttons-container'>
-						<Button size='small'>Edit</Button>
-						<Button size='small'>Delete</Button>
+						<Button
+							color='success'
+							size='small'
+							endIcon={<EditIcon />}
+						>
+							Edit
+						</Button>
+						<Button
+							color='warning'
+							size='small'
+							endIcon={<DeleteForeverIcon />}
+						>
+							Delete
+						</Button>
 					</CardActions>
 				</Card>
 			))}
