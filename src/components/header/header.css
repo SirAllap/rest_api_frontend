@@ -1,12 +1,17 @@
 .container {
-	top: 1000px;
 	backdrop-filter: blur(10px);
 	-webkit-backdrop-filter: blur(10px);
 	z-index: 2;
-	padding: 15px;
+	padding: 20px;
+}
+.text-container {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between !important;
+	width: 970px;
+	margin: 0 auto;
 }
 .header-title {
-	width: 970px;
 	color: #555555;
-	text-align: left;
+	height: 50px;
 }
