@@ -1,4 +1,3 @@
-import React from 'react'
 import AppBar from '@mui/material/AppBar'
 import Stack from '@mui/material/Stack'
 import { Typography } from '@mui/material'
@@ -13,15 +12,14 @@ export const Header = () => {
 				style={{
 					background: '#f4f2e9',
 					boxShadow: 'none',
-					padding: '15px',
 				}}
 			>
 				<Typography
-					align='center'
-					fontSize={40}
+					className='header-title'
 					fontWeight={700}
 					fontFamily={'monospace'}
-					color={'#555555'}
+					fontSize={40}
+					margin={'0 auto'}
 				>
 					Books Website
 				</Typography>

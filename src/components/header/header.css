@@ -3,4 +3,10 @@
 	backdrop-filter: blur(10px);
 	-webkit-backdrop-filter: blur(10px);
 	z-index: 2;
+	padding: 15px;
+}
+.header-title {
+	width: 970px;
+	color: #555555;
+	text-align: left;
 }
