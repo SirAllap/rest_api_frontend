@@ -1,0 +1,26 @@
+.card-container {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-evenly;
+	align-items: center;
+	gap: 40px;
+	width: 990px;
+	margin: 40px auto;
+}
+
+.card {
+	position: relative;
+	min-width: 255px;
+	max-width: 255px;
+	min-height: 325px;
+	max-height: 325px;
+}
+
+.buttons-container {
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+	position: absolute;
+	bottom: 0px;
+	width: 93%;
+}
