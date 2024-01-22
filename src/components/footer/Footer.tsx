@@ -1,5 +1,4 @@
 import { Link, Stack, Typography } from '@mui/material'
-import React from 'react'
 import './footer.css'
 
 function Footer() {
