@@ -22,11 +22,50 @@ export const fetchAllBooks = createAsyncThunk<IBook[]>(
 	}
 )
 
+export const fetchOneBook = createAsyncThunk(
+	'books/fetchOneBook',
+	async (id: string) => {
+		const response = await fetch(`${API_URL}/books/${id}`, {
+			method: 'GET',
+			mode: 'cors',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+		})
+		if (!response.ok) {
+			throw new Error(`Response status: ${response.status}`)
+		} else {
+			const data = await response.json()
+			return data
+		}
+	}
+)
+
 export const addNewBook = createAsyncThunk(
 	'books/addNewBook',
 	async (body: IBook) => {
 		const response = await fetch(`${API_URL}/books`, {
 			method: 'POST',
+			mode: 'cors',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify(body),
+		})
+		if (!response.ok) {
+			throw new Error(`Response status: ${response.status}`)
+		} else {
+			const data = await response.json()
+			return data
+		}
+	}
+)
+
+export const modifyBookInfo = createAsyncThunk(
+	'books/modifyBookInfo',
+	async (body: IBook) => {
+		const response = await fetch(`${API_URL}/books/${body._id}`, {
+			method: 'PUT',
 			mode: 'cors',
 			headers: {
 				'Content-Type': 'application/json',
