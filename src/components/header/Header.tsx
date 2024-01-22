@@ -36,15 +36,15 @@ export const Header = () => {
 			setAuthor('')
 			setDescription('')
 			setPrice('')
-			handleClose()
+			handleModal()
 			dispatch(fetchAllBooks())
 		} else if (creationStatusFetch === 'rejected') {
 			console.log('rejected')
 		}
 	}, [creationStatusFetch, dispatch])
 
-	const handleOpen = () => setOpen(true)
-	const handleClose = () => setOpen(false)
+	const handleModal = () => setOpen((toggle) => !toggle)
+
 	const handleBookCreation = () => {
 		const newBook = {
 			title: title,
@@ -59,7 +59,7 @@ export const Header = () => {
 		<Stack spacing={2} sx={{ flexGrow: 1 }}>
 			<Modal
 				open={open}
-				onClose={handleClose}
+				onClose={handleModal}
 				aria-labelledby='modal-modal-title'
 				aria-describedby='modal-modal-description'
 			>
@@ -187,7 +187,7 @@ export const Header = () => {
 							fontFamily: 'monospace',
 						}}
 						endIcon={<AddIcon />}
-						onClick={handleOpen}
+						onClick={handleModal}
 					>
 						Add a new book
 					</Button>
